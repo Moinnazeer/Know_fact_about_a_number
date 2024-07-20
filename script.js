@@ -4,7 +4,7 @@ let factEl = document.getElementById("fact");
 
 function getFactOfEnteredNumber(event) {
   if (event.key === "Enter") {
-    let userInputVal = userInputEl.value;
+    let userInputVal = userInputEl.value.trim();
 
     if (userInputVal === "") {
       alert("Enter a Number");
@@ -29,6 +29,13 @@ function getFactOfEnteredNumber(event) {
 
         let { fact } = jsonData;
         factEl.textContent = fact;
+      })
+      .catch(function(error) {
+        console.error('Error fetching data:', error);
+        alert('Failed to fetch data. Please try again.');
+        spinnerEl.classList.add("d-none");
+        factEl.classList.remove("d-none");
+        factEl.textContent = "Failed to fetch data";
       });
   }
 }
